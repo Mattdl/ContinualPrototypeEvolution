@@ -1,0 +1,16 @@
+*.pt
+*.txt
+*.pyc
+*.pdf
+*.tar.gz
+*.zip
+*.npz
+*.log
+*.out
+*jobs/
+*log/
+
+.idea/
+env/
+venv/
+data/raw/*/
