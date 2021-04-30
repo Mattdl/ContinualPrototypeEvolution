@@ -77,6 +77,7 @@ With the **evaluator**:
           journal={arXiv preprint arXiv:2009.00919},
           year={2020}
         }
+- CoPE has been made available in the [Avalanche framework](https://github.com/ContinualAI/avalanche/) (free to use under MIT license)!
 - Thanks to the following repositories:
     - https://github.com/facebookresearch/GradientEpisodicMemory
     - https://github.com/rahafaljundi/Gradient-based-Sample-Selection
