@@ -10,6 +10,7 @@ import torch
 
 from metrics.metrics import confusion_matrix
 import metrics.plot as plot
+from metrics.utils import createdirs
 from model.common import MLP, ResNet18
 from model.prototypical.mem_scheme import MemoryScheme
 from model.prototypical.loss_scheme import PPPloss
@@ -517,14 +518,6 @@ def stat_summarize(stat_files):
     print("Avg acc = {:.3f}+-{:.3f}".format(mean, std))
 
     return mean, std
-
-
-def createdirs(dirpath):
-    try:
-        os.makedirs(os.path.dirname(dirpath), mode=0o750, exist_ok=True)
-    except Exception as e:
-        print(e)
-        print("ERROR IN CREATING DIRS:", os.path.dirname(dirpath))
 
 
 if __name__ == "__main__":

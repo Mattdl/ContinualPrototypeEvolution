@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 import os
-import utils
+from metrics.utils import createdirs
 
 
 def plot_featspace(data_mode, tr_data, eval_data, model, plot_t, batch_cnt, save_img_path=None, legend=False):
@@ -11,7 +11,7 @@ def plot_featspace(data_mode, tr_data, eval_data, model, plot_t, batch_cnt, save
         mode_img_path = None
         if save_img_path is not None:
             mode_img_path = os.path.join(save_img_path, mode + "/")
-            utils.createdirs(mode_img_path)
+            createdirs(mode_img_path)
         _ = _plot_featspace(mode, tr_data, eval_data, model, plot_t, batch_cnt, mode_img_path, legend, init,
                             figsize=(8, 8))
         _ = _plot_featspace(mode, tr_data, eval_data, model, plot_t, batch_cnt, mode_img_path, legend, init,
