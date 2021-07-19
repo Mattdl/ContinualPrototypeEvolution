@@ -114,7 +114,6 @@ class PPPloss(object):
                 exit(1)
         if self.net.log:
             self.tracker['loss'].append(loss.item())
-            print()
             print("-" * 40)
         return loss / bs  # Make independent batch size
 

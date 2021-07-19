@@ -139,9 +139,6 @@ class MemoryScheme(object):
 
             # Q input
             if self.net.n_memories > 0:
-                if self.net.log:
-                    print("-" * 80)
-                    print("UPDATING Qi: class {}".format(c))
                 xc, fc, fk = None, None, None
                 split_idx = 0
                 yrc = []
@@ -169,14 +166,9 @@ class MemoryScheme(object):
                     fk = fk_s if fk is None else torch.cat([fk, fk_s])
 
                 if xc is None or xc.shape[0] == 0:
-                    if self.net.log:
-                        print("No selected from new class.")
                     continue
 
                 self.qi_update(class_mem[c], xc, fc, c, split_idx, yrc, fk)
-
-                if self.net.log:
-                    print("-" * 80)
 
         # Cutoff based on what we have eventually
         if self.net.dyn_mem:
