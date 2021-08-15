@@ -10,7 +10,7 @@ ofile="cifar100.pt"
 # Main Split-CIFAR100 config
 tasks=20
 results="results/cifar100/"
-ds_args="--tasks_to_preserve $tasks --save_path $results --data_path $datapath --log_every 500 --samples_per_task 2500 --data_file $ofile --cuda yes"
+ds_args="--tasks_to_preserve $tasks --save_path $results --data_path $datapath --log_every 2500 --samples_per_task 2500 --data_file $ofile --cuda yes"
 mkdir 'results'
 mkdir $results
 
@@ -39,9 +39,11 @@ cd ..
 # n_outputs=128,256,512
 # lr=0.05,0.01,0.005,0.001
 # n_iter=1,5
-n_memories=500 # Change for ablation (mem per class)
+n_memories=50 # Change for ablation (mem per class)
 
 # CoPE
+# Last code version acc check for first seed : 20.51% avg acc
+# Note: Use the exact dependencies in README.md to reproduce the results.
 model="prototypical.CoPE"
 args="--model $model --batch_size 10 --lr 0.005 --loss_T 0.05 --p_momentum 0.9 --n_memories $n_memories --n_outputs 256 --n_iter 5 --n_seeds 5 $exp_name"
 $MY_PYTHON "$pyscript" $ds_args $args # Run python file
@@ -96,7 +98,7 @@ exit
 # n_outputs=256
 # lr=0.05,0.01,0.005,0.001
 # n_iter=1,5
-n_memories=500 # 5k total
+n_memories=50 # 5k total (50 per class * 100 classes)
 
 # CoPE
 model="prototypical.CoPE"

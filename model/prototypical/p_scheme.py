@@ -4,13 +4,12 @@ import torch
 class PrototypeScheme(object):
     valid_p_modes = ['batch_only', 'batch_momentum', 'batch_momentum_it', 'batch_momentum_incr']
 
-    def __init__(self, net, p_mode, p_momentum=0, Tp=0.1):
+    def __init__(self, net, p_mode, p_momentum=0):
         """
         :param p_mode: prototypes update mode
         """
         assert p_mode in self.valid_p_modes, "{} not in {}".format(p_mode, self.valid_p_modes)
         self.net = net
-        self.Tp = Tp
         self.p_momentum = p_momentum
         self.update_pre_loss = False
         self.update_post_loss = True
@@ -82,9 +81,10 @@ class PrototypeScheme(object):
                 if class_mem[c].p_tmp_cnt > 0:
                     incr_p = class_mem[c].p_tmp / class_mem[c].p_tmp_cnt
                     old_p = class_mem[c].prototype.clone()
-                    new_p_momentum = self.momentum_update(old_p, incr_p, self.p_momentum)
-                    new_p = torch.nn.functional.normalize(new_p_momentum, p=2,
-                                                          dim=1).detach()  # L2-embedding normalization
+                    new_p = self.momentum_update(old_p, incr_p, self.p_momentum)
+                    # Uncomment to renormalize prototypes:
+                    # new_p_momentum = self.momentum_update(old_p, incr_p, self.p_momentum)
+                    # new_p = torch.nn.functional.normalize(new_p_momentum, p=2,dim=1).detach()
                     self.summarize_p_update(c, new_p, old_p)
 
                     # Update

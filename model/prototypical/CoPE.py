@@ -58,7 +58,7 @@ class Net(torch.nn.Module):
 
         # Modular implementation
         self.lossFunc = PPPloss(self, mode=args.loss_mode, T=args.loss_T, tracker=args.tracker.loss_history)
-        self.p_update_scheme = PrototypeScheme(self, p_mode=args.p_mode, p_momentum=args.p_momentum, Tp=args.Tp)
+        self.p_update_scheme = PrototypeScheme(self, p_mode=args.p_mode, p_momentum=args.p_momentum)
         self.mem_update_scheme = MemoryScheme(self, qi_mode=args.qi_mode)
         self.sample_scheme = SampleScheme(self, sample_qi_mode=args.sample_qi_mode)
 

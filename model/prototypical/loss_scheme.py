@@ -85,8 +85,8 @@ class PPPloss(object):
             xk = x_metric.index_select(0, xk_idxs)
 
             p_idx = (p_y == c).nonzero().squeeze(dim=1)
-            pc = p_x[p_idx]
-            pk = torch.cat([p_x[:p_idx], p_x[p_idx + 1:]])  # Other class prototypes
+            pc = p_x[p_idx].detach()
+            pk = torch.cat([p_x[:p_idx], p_x[p_idx + 1:]]).detach()  # Other class prototypes
             if self.net.log:
                 print("Class {}:".format(str(c.item())), end='')
 
@@ -117,13 +117,13 @@ class PPPloss(object):
             print("-" * 40)
         return loss / bs  # Make independent batch size
 
-    def repellor(self, pc, pk, xc, xk, gpu, eps=1e-6, include_batch=True):
+    def repellor(self, pc, pk, xc, xk, gpu, include_batch=True):
         # Gather per other-class samples
         if not include_batch:
             union_c = pc
         else:
             union_c = torch.cat([xc, pc])
-        union_ck = torch.cat([union_c, pk])
+        union_ck = torch.cat([union_c, pk]) #.clone().detach()
         c_split = union_c.shape[0]
         if gpu:
             union_ck = union_ck.cuda()
@@ -162,7 +162,7 @@ class PPPloss(object):
         if gpu:
             pos_union_l = [x.cuda() for x in pos_union_l]
         pos_union = torch.cat(pos_union_l)
-        all_pos_union = torch.cat([pos_union, pk]).detach()  # Include all other-class prototypes p_k
+        all_pos_union = torch.cat([pos_union, pk]).clone().detach()  # Include all other-class prototypes p_k
         pk_offset = pos_union.shape[0]  # from when starts p_k
 
         # Resulting distance columns are per-instance loss terms (don't include self => diagonal)

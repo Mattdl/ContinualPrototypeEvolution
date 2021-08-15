@@ -34,7 +34,6 @@ parser.add_argument('--resume', default=None, type=str, help='resume in time/uid
 # CoPE Prototype schemes
 parser.add_argument('--p_mode', default='batch_momentum_incr', type=str, choices=PrototypeScheme.valid_p_modes,
                     help='Update strategy for the class prototypes.')
-parser.add_argument('--Tp', default=0.1, type=float, help='Temperature for prototype distance.')
 parser.add_argument('--p_momentum', default=0.99, type=float,
                     help='Momentum of the moving avg updates for the prototypes.')
 

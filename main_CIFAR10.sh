@@ -44,6 +44,9 @@ cd ..
 n_memories=100 # Change for ablation (mem per class): 10,20,50,100,150,200
 
 # CoPE
+# Last code version acc check for 5 seeds: 49.610+-3.441 avg acc
+# Avg accs per seed=[tensor([0.4576]), tensor([0.5106]), tensor([0.5040]), tensor([0.4664]), tensor([0.5419])]
+# Note: Use the exact dependencies in README.md to reproduce the results.
 model="prototypical.CoPE"
 args="--model $model --batch_size 10 --lr 0.005 --loss_T 0.1 --p_momentum 0.99 --n_memories $n_memories --n_outputs 256 --n_iter 1 --n_seeds 5 $exp_name"
 $MY_PYTHON "$pyscript" $ds_args $args # Run python file
@@ -109,6 +112,6 @@ extra_args="--samples_per_task |1,4000,400|" # First task has 4000, rest has 400
 extra_args="--samples_per_task |2,4000,400|"
 extra_args="--samples_per_task |3,4000,400|"
 extra_args="--samples_per_task |4,4000,400|"
-extra_args="--samples_per_task |5,4000,400|" # Fifth task has 4000, rest has 400
+extra_args="--samples_per_task |5,4000,400|"      # Fifth task has 4000, rest has 400
 
 $MY_PYTHON "$pyscript" $ds_args $extra_args $args # Run python file

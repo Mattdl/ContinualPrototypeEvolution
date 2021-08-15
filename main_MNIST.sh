@@ -43,6 +43,8 @@ cd ..
 n_memories=200 # Change for ablation (mem per class): 10,20,50,100,150,200
 
 # CoPE
+# Last code version acc check for 5 seeds: 94.110+-0.764 avg acc
+# Note: Use the exact dependencies in README.md to reproduce the results.
 model="prototypical.CoPE"
 args="--model $model --batch_size 10 --lr 0.01 --loss_T 0.1 --p_momentum 0.99 --n_memories $n_memories --n_outputs 100 --n_iter 1 --n_seeds 5 $exp_name"
 $MY_PYTHON "$pyscript" $ds_args $args # Run python file
