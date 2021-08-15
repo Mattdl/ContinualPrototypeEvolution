@@ -5,8 +5,8 @@ This codebase contains the original PyTorch implementation of CoPE, along with t
 The benchmarks have both a balanced and highly imbalanced variant, resembling more real-life settings.
 Included baselines outperformed in these settings are: CoPE-CrossEntropy, GEM, iCaRL, GSS, reservoir sampling, finetuning, online iid, offline iid.
 
-
-Paper available at: https://arxiv.org/pdf/2009.00919.pdf
+- This work is accepted at the International Conference on Computer Vision (ICCV) 2021.
+- You can early-acces the paper at: https://arxiv.org/pdf/2009.00919.pdf
 
 <img src="CoPE_fig.png" width="800">
 
@@ -25,7 +25,6 @@ The **imbalanced** setups contain (averaged over 5 different choices of dominant
 - Imbalanced Split-MNIST: 1 task 2k samples, others 0.2k (5 tasks)
 - Imbalanced Split-CIFAR10: 1 task 4k samples, others 0.4k (5 tasks)
 - Imbalanced Split-CIFAR100: 1 task 2k samples, others 1k (20 tasks)
-
 
 ## Requirements
 - Python 3.7
@@ -49,6 +48,13 @@ The **imbalanced** setups contain (averaged over 5 different choices of dominant
             conda install -c conda-forge scikit-learn=0.22.1
             conda install -c omnia quadprog                     # GEM baseline
 
+## Reproducing paper results
+This final code-base is validated to produce similar results to the original results reported in the paper.
+- To avoid issues, use the *exact* dependency requirements defined above.
+- Original implementation doesn't re-normalize prototypes after momentum-update. Doing this slightly decreases average accuracy.
+- Final code-base results after cleanup are checked. Avg. accuracy balanced benchmarks: 94.11+-0.76 (MNIST 5 seeds), 49.61+-3.44 (CIFAR10 5 seeds), 20.51 (CIFAR100 1 seed). 
+Report an issue or contact me if you have troubles reproducing these.
+
 ## Online Data incremental learning
 Although the data streams are divided into tasks to compare with task and class-incremental learning alorithms (iCaRL, GEM),
 in CoPE the continual learner is unaware of tasks or task transitions.
@@ -71,11 +77,11 @@ With the **evaluator**:
 ## Credits
 - Consider citing our work upon using this repo.
 
-        @article{de2020continual,
+        @inproceedings{delange2020continual,
           title={Continual Prototype Evolution: Learning Online from Non-Stationary Data Streams},
           author={De Lange, Matthias and Tuytelaars, Tinne},
-          journal={arXiv preprint arXiv:2009.00919},
-          year={2020}
+          booktitle={Proceedings of the IEEE International Conference on Computer Vision},
+          pages={}, year={2021}
         }
 - CoPE has been made available in the [Avalanche framework](https://github.com/ContinualAI/avalanche/) (free to use under MIT license)!
 - Thanks to the following repositories:
