@@ -6,7 +6,7 @@ The benchmarks have both a balanced and highly imbalanced variant, resembling mo
 Included baselines outperformed in these settings are: CoPE-CrossEntropy, GEM, iCaRL, GSS, reservoir sampling, finetuning, online iid, offline iid.
 
 - This work is accepted at the International Conference on Computer Vision (ICCV) 2021.
-- You can early-acces the paper at: https://arxiv.org/pdf/2009.00919.pdf
+- You can freely check out the paper [here](https://openaccess.thecvf.com/content/ICCV2021/html/De_Lange_Continual_Prototype_Evolution_Learning_Online_From_Non-Stationary_Data_Streams_ICCV_2021_paper.html)!
 
 <img src="CoPE_fig.png" width="800">
 
@@ -77,11 +77,11 @@ With the **evaluator**:
 ## Credits
 - Consider citing our work upon using this repo.
 
-        @inproceedings{delange2020continual,
-          title={Continual Prototype Evolution: Learning Online from Non-Stationary Data Streams},
-          author={De Lange, Matthias and Tuytelaars, Tinne},
-          booktitle={Proceedings of the IEEE International Conference on Computer Vision},
-          pages={}, year={2021}
+        @InProceedings{De_Lange_2021_ICCV,
+            author    = {De Lange, Matthias and Tuytelaars, Tinne},
+            title     = {Continual Prototype Evolution: Learning Online From Non-Stationary Data Streams},
+            booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+            month     = {October},year = {2021}, pages = {8250-8259}
         }
 - CoPE has been made available in the [Avalanche framework](https://github.com/ContinualAI/avalanche/) (free to use under MIT license)!
 - Thanks to the following repositories:
