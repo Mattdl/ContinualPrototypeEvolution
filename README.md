@@ -1,4 +1,5 @@
 # Continual Prototype Evolution (CoPE)
+
 Continual Prototype Evolution (CoPE) establishes online adaptation of class-representative prototypes in non-stationary data streams, exploiting latent space representations in the novel PPP-loss to enhance the state-of-the-art in continual learning.
 
 This codebase contains the original PyTorch implementation of CoPE, along with the Split-MNIST, Split-CIFAR10, Split-CIFAR100 benchmarks.
@@ -6,7 +7,8 @@ The benchmarks have both a balanced and highly imbalanced variant, resembling mo
 Included baselines outperformed in these settings are: CoPE-CrossEntropy, GEM, iCaRL, GSS, reservoir sampling, finetuning, online iid, offline iid.
 
 - This work is accepted at the International Conference on Computer Vision (ICCV) 2021.
-- You can freely check out the paper [here](https://openaccess.thecvf.com/content/ICCV2021/html/De_Lange_Continual_Prototype_Evolution_Learning_Online_From_Non-Stationary_Data_Streams_ICCV_2021_paper.html)!
+- Resources: **[Open-Access paper @ICCV 2021](https://openaccess.thecvf.com/content/ICCV2021/html/De_Lange_Continual_Prototype_Evolution_Learning_Online_From_Non-Stationary_Data_Streams_ICCV_2021_paper.html)** | **[Supplemental Materials](https://openaccess.thecvf.com/content/ICCV2021/supplemental/De_Lange_Continual_Prototype_Evolution_ICCV_2021_supplemental.pdf)**
+
 
 <img src="CoPE_fig.png" width="800">
 
