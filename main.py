@@ -88,8 +88,6 @@ parser.add_argument('--n_iter', type=int, default=1,
                     help='Number of iterations per batch')
 parser.add_argument('--batch_size', type=int, default=10,
                     help='batch size')
-parser.add_argument('--mini_batch_size', type=int, default=0,
-                    help='Subsample mini-batches from a batch for Single baseline.')
 parser.add_argument('--lr', type=float, default=1e-3,
                     help='SGD learning rate')
 
@@ -169,7 +167,7 @@ class Continuum:
             sample_idxs.append(p)
 
         if args.iid:
-            n_tasks = 1
+            n_tasks = 1  # assemble all data in 1 task
             task_permutation = [0]
 
             min_class = np.inf
@@ -403,9 +401,6 @@ def main(overwrite_args=None):
     args.normalize = True if args.normalize == 'yes' else False
     args.shared_head = True if args.shared_head == 'yes' else False
     args.iid = True if args.iid == 'yes' else False
-
-    if args.mini_batch_size == 0:
-        args.mini_batch_size = args.batch_size  # no mini iterations
 
     # unique identifier
     uid = uuid.uuid4().hex if args.uid is None else args.uid
