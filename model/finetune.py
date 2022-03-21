@@ -30,7 +30,7 @@ class Net(torch.nn.Module):
 
         self.nc_per_task = n_outputs
         self.n_outputs = n_outputs
-        self.n_epochs = args.n_iter
+        self.n_iter = args.n_iter
         self.batch_size = args.batch_size  # How many to process per update
 
     def forward(self, x, t):
@@ -38,9 +38,8 @@ class Net(torch.nn.Module):
         return output
 
     def observe(self, x, t, y):
-        """ Observes entire dataset at once to allow both offline and online finetuning. """
         self.train()
-        for epoch in range(self.n_epochs):
+        for batch_iter in range(self.n_iter):  # How many times reprocess same batch
             permutation = torch.randperm(x.size()[0])  # Shuffle
 
             for i in range(0, x.size()[0], self.batch_size):  # Iterate mini-batches
